@@ -1,0 +1,29 @@
+services:
+  web:
+    image: flaviofrancisco/vagasprajr-web
+    container_name: vagasprajr-ui
+    ports:
+      - "3000:3000"
+
+  api:
+    image: flaviofrancisco/vagasprajr-api
+    container_name: vagasprajr-api
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./uploads:/uploads:rw
+      - ./.env:/app/.env:ro
+    env_file:
+      - .env    
+
+  db:
+    image: flaviofrancisco/vagasprajr-db
+    container_name: vagasprajr-db
+    env_file:
+      - .env
+    volumes:
+      - ./db:/data/db # Replace with your volume mapping if needed
+      - ./backup:/backup # Replace with your volume mapping if needed
+    ports:
+      - "27017:27017"        
+          
