@@ -1,7 +1,8 @@
 # Welcome to the project @vagasprajr - Docker Compose
 
-In order to run this project you need to donwload [Docker Desktop](https://www.docker.com/products/docker-desktop/).
-
+In order to run this project you will need:
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) and
+- Linux Ubuntu 20.04 LTS or Windows with WSL enabled.
 
 
 ## The .env file
