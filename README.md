@@ -51,3 +51,8 @@ docker-compose down
 
 > **Note:** To clean up the project  you can delete the following folders: backup; db and uploads.
 
+# The source project of each image you may find in the links below:
+
+- [UI (Front)](https://github.com/flaviofrancisco/vagasprajr-ui-v2)
+- [API](https://github.com/flaviofrancisco/vagasprajr-api-v2) and
+- [Database](https://github.com/flaviofrancisco/vagasprajr-mongodb)
