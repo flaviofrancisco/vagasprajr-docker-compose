@@ -15,6 +15,15 @@ We use the following languages/ technologies:
 
 Basically everthing runs inside of Docker containers. 
 
+The data is scrapped from different sources and we republished the links from the sources in our channels: 
+- [Discord](https://discord.gg/gzYg6qJUH6);
+- [X (previous Twitter)](https://x.com/vagasprajr);
+- [BlueSky](https://bsky.app/profile/vagasprajr.bsky.social);
+- [Telegram](http://t.me/vagasprajr)
+- and our site: [vagasprajr.com.br](https://vagasprajr.com.br/)
+
+We don't own the jobs listed.
+
 ![image](https://github.com/user-attachments/assets/8c11b4bb-8020-4dfd-8d47-7623e009c8f4)
 
 ## The .env file
