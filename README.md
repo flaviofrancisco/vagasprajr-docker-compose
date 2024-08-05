@@ -24,7 +24,7 @@ The data is scrapped from different sources and we republished the links from th
 
 We don't own the jobs listed.
 
-![image](https://github.com/user-attachments/assets/8c11b4bb-8020-4dfd-8d47-7623e009c8f4)
+![vagasprajr-system-design drawio](https://github.com/user-attachments/assets/983e447b-17f0-4108-a24d-efa3139a27df)
 
 ## The .env file
 
