@@ -2,28 +2,51 @@ services:
   web:
     image: flaviofrancisco/vagasprajr-web
     container_name: vagasprajr-ui
+    hostname: ui
     ports:
       - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_HOST=http://api:3001
+    networks:
+      - vagasprajr-network            
 
   api:
     image: flaviofrancisco/vagasprajr-api
     container_name: vagasprajr-api
+    hostname: api
+    dns_search: ''
     ports:
       - "3001:3001"
     volumes:
       - ./uploads:/uploads:rw
       - ./.env:/app/.env:ro
-    env_file:
-      - .env    
+    environment:
+      - DEBUG_MODE=true
+      - MONGO_URI=mongodb://admin:Your_Super_Secret_Password_For_MongoDB_Root_User_Account_123_456_789@db:27017/vagasprajrdb?authSource=admin
+      - JWT_SECRET=Your_Super_Secret_JWT_Secret_123_456_789      
+      - COOKIE_DOMAIN=localhost
+      - COOKIE_SECURE=false   
+      - MONGODB_DATABASE=vagasprajrdb
+      - BASE_UI_HOST=http://ui:3000
+    networks:
+      - vagasprajr-network      
 
   db:
     image: flaviofrancisco/vagasprajr-db
     container_name: vagasprajr-db
-    env_file:
-      - .env
+    hostname: db
     volumes:
       - ./db:/data/db # Replace with your volume mapping if needed
       - ./backup:/backup # Replace with your volume mapping if needed
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=Your_Super_Secret_Password_For_MongoDB_Root_User_Account_123_456_789      
     ports:
-      - "27017:27017"        
+      - "27017:27017"
+    networks:
+      - vagasprajr-network            
+
+networks:
+  vagasprajr-network:
+    driver: bridge        
           
