@@ -28,6 +28,9 @@ services:
       - COOKIE_SECURE=false   
       - MONGODB_DATABASE=vagasprajrdb
       - BASE_UI_HOST=http://ui:3000
+      - REDIS_HOST=redis
+      - REDIS_PORT=6380
+      - REDIS_PASSWORD=REDIS_PASSWORD
     networks:
       - vagasprajr-network      
 
