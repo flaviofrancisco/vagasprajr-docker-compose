@@ -2,3 +2,4 @@
 db/*
 uploads/*
 backup/*
+restore_backup.sh
