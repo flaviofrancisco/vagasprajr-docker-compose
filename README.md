@@ -49,6 +49,29 @@ docker-compose up -d
 docker-compose down
 ```
 
+### After running the project
+
+Install the MongoDB Extension for VS Code and connect to the MongoDB container using the connection string in the .env file.
+
+
+You need to create a new account using the UI and then run locally in your MongoDB the following command:
+
+```
+db.users.updateOne({email: "youremail@xyz.com"}, {$set: {is_email_confirmed: true}});
+```
+
+and then insert the admin role to your account:
+
+```
+db.roles.insertOne({name: "admin"});
+```
+
+and then insert the role to your account:
+
+```
+db.users.updateOne({email: "youremail@xyz.com"}, {$set: {roles: ["66d7488bea69baa9afb3721b"]}});
+```
+
 > **Note:** To clean up the project  you can delete the following folders: backup; db and uploads.
 
 ## The source project of each image you may find in the links below:
