@@ -3,18 +3,23 @@ services:
     image: flaviofrancisco/vagasprajr-web
     container_name: vagasprajr-ui
     hostname: ui
+    env_file:
+      - .env
     ports:
       - "3000:3000"
     environment:
       - NEXT_PUBLIC_API_HOST=http://api:3001
     networks:
-      - vagasprajr-network            
+      - default
+      - vagasprajr_network            
 
   api:
     image: flaviofrancisco/vagasprajr-api
     container_name: vagasprajr-api
     hostname: api
     dns_search: ''
+    env_file:
+      - .env    
     ports:
       - "3001:3001"
     volumes:
@@ -32,7 +37,8 @@ services:
       - REDIS_PORT=6380
       - REDIS_PASSWORD=REDIS_PASSWORD
     networks:
-      - vagasprajr-network      
+      - default
+      - vagasprajr_network      
 
   db:
     image: flaviofrancisco/vagasprajr-db
@@ -47,7 +53,8 @@ services:
     ports:
       - "27017:27017"
     networks:
-      - vagasprajr-network  
+      - default
+      - vagasprajr_network  
 
   redis:
     image: redis:alpine
@@ -60,11 +67,16 @@ services:
     # Specify the redis.conf file to use and add a password.
     command: redis-server /usr/local/etc/redis/redis.conf --requirepass ${REDIS_PASSWORD}      
     ports:
-      - "6380:6379"
+      - "6379:6379"
     networks:
-      - vagasprajr-network                
+      - default
+      - vagasprajr_network               
 
 networks:
-  vagasprajr-network:
-    driver: bridge        
+  vagasprajr_network:
+    driver: bridge
+    # external: true    
+
+volumes:
+  uploads:       
           

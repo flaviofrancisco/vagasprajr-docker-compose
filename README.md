@@ -72,6 +72,14 @@ and then insert the role to your account:
 db.users.updateOne({email: "youremail@xyz.com"}, {$set: {roles: ["66d7488bea69baa9afb3721b"]}});
 ```
 
+### Next Auth Secret
+
+If you want to create your own secret you can run the following command:
+
+```bash
+openssl rand -base64 64
+```
+
 > **Note:** To clean up the project  you can delete the following folders: backup; db and uploads.
 
 ## The source project of each image you may find in the links below:
