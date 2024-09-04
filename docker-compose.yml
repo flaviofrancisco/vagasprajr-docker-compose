@@ -24,8 +24,7 @@ services:
       - "3001:3001"
     volumes:
       - ./uploads:/uploads:rw
-      - ./.env:/app/.env:ro
-      - ./api/redis/redis.conf:/usr/local/etc/redis/redis.conf
+      - ./.env:/app/.env:ro    
     environment:
       - DEBUG_MODE=true
       - MONGO_URI=mongodb://admin:Your_Super_Secret_Password_For_MongoDB_Root_User_Account_123_456_789@db:27017/vagasprajrdb?authSource=admin
