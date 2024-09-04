@@ -51,26 +51,17 @@ docker-compose down
 
 ### After running the project
 
-Install the MongoDB Extension for VS Code and connect to the MongoDB container using the connection string in the .env file.
-
-
-You need to create a new account using the UI and then run locally in your MongoDB the following command:
+Install the MongoDB Extension for VS Code and connect to the MongoDB container using the connection string in the .env file. In our case, it is:
 
 ```
-db.users.updateOne({email: "youremail@xyz.com"}, {$set: {is_email_confirmed: true}});
+mongodb://admin:Your_Super_Secret_Password_For_MongoDB_Root_User_Account_123_456_789@localhost:27017/vagasprajrdb?authSource=admin
 ```
 
-and then insert the admin role to your account:
 
-```
-db.roles.insertOne({name: "admin"});
-```
+You need to create a new account using the UI and then, using the MongoDB extension, you can update the account to be an admin, creating a playground after connected to the database and run the script of the file: `init-db.mongodb.js`:
 
-and then insert the role to your account:
+Don't forget to change the email: `youremail@yahoo.ca` to your email in the script.
 
-```
-db.users.updateOne({email: "youremail@xyz.com"}, {$set: {roles: ["66d7488bea69baa9afb3721b"]}});
-```
 
 ### Next Auth Secret
 
@@ -79,6 +70,8 @@ If you want to create your own secret you can run the following command:
 ```bash
 openssl rand -base64 64
 ```
+
+and update the .env file with the new secret for the NEXTAUTH_SECRET variable.
 
 > **Note:** To clean up the project  you can delete the following folders: backup; db and uploads.
 

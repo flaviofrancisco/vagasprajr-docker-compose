@@ -10,8 +10,8 @@ services:
     environment:
       - NEXT_PUBLIC_API_HOST=http://api:3001
     networks:
-      - default
-      - vagasprajr_network            
+      vagasprajr_network:
+        ipv4_address: 172.16.238.8            
 
   api:
     image: flaviofrancisco/vagasprajr-api
@@ -19,12 +19,13 @@ services:
     hostname: api
     dns_search: ''
     env_file:
-      - .env    
+      - .env         
     ports:
       - "3001:3001"
     volumes:
       - ./uploads:/uploads:rw
       - ./.env:/app/.env:ro
+      - ./api/redis/redis.conf:/usr/local/etc/redis/redis.conf
     environment:
       - DEBUG_MODE=true
       - MONGO_URI=mongodb://admin:Your_Super_Secret_Password_For_MongoDB_Root_User_Account_123_456_789@db:27017/vagasprajrdb?authSource=admin
@@ -34,11 +35,11 @@ services:
       - MONGODB_DATABASE=vagasprajrdb
       - BASE_UI_HOST=http://ui:3000
       - REDIS_HOST=redis
-      - REDIS_PORT=6380
-      - REDIS_PASSWORD=REDIS_PASSWORD
+      - REDIS_PORT=${REDIS_PORT}
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
     networks:
-      - default
-      - vagasprajr_network      
+      vagasprajr_network:
+        ipv4_address: 172.16.238.9      
 
   db:
     image: flaviofrancisco/vagasprajr-db
@@ -53,8 +54,8 @@ services:
     ports:
       - "27017:27017"
     networks:
-      - default
-      - vagasprajr_network  
+      vagasprajr_network:
+        ipv4_address: 172.16.238.10  
 
   redis:
     image: redis:alpine
@@ -69,13 +70,15 @@ services:
     ports:
       - "6379:6379"
     networks:
-      - default
-      - vagasprajr_network               
+      vagasprajr_network:
+        ipv4_address: 172.16.238.11              
 
 networks:
   vagasprajr_network:
     driver: bridge
-    # external: true    
+    ipam:
+      config:
+        - subnet: 172.16.238.0/24    
 
 volumes:
   uploads:       
